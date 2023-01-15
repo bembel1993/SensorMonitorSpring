@@ -113,21 +113,16 @@ public class SimpleController {
         return "redirect:/listSensor";
     }
 
-    @PostMapping("/searchByName")
-    public String searchMethod(@RequestParam String search, Model model) {
-            model.addAttribute("sensors", sensorService.findSensorByName(search));
-
-        return "search-result";
-    }
-    /*@PostMapping("/searchByName")
-    public String searchByName(@RequestParam("searchName") String searchName, Model model) {
-        List<Sensor> sensorList = sensorService.searchByName(searchName);
-        if (sensorList.isEmpty()) {
-            model.addAttribute("searchWarning", "Sorry!! Search not found.");
+    @GetMapping("/searchByName")
+    public String searchMethod(@RequestParam("searchSensor") String search, Model model) {
+        List<Sensor> sensors = sensorService.searchSensor(search);
+        if(sensors.isEmpty()) {
+            model.addAttribute("searchWarning","Sorry!! Search not found.");
         }
-        model.addAttribute("sensors", sensorList);
-        return "search-result";
-    }*/
+        model.addAttribute("sensors", sensors);
+        model.addAttribute("sensorQty", sensorRepository.count());
+        return "list-sensor";
+    }
 }
 
  /* @PostMapping("/saveSensor")

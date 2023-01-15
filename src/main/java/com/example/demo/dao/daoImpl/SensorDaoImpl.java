@@ -48,6 +48,12 @@ public class SensorDaoImpl implements SensorDao {
     }
 
     @Override
+    public List<Sensor> searchSensor(String query){
+        List<Sensor> sensors = sensorRepository.searchSensor(query);
+        return sensors;
+    }
+
+    @Override
     public int save(Sensor sensor) {
         // String sql = "INSERT INTO sensor (name, model, type, range, unit, location, description) VALUES (?, ?, ?, ?, ?, ?,?)";
 

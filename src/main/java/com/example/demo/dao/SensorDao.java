@@ -20,4 +20,6 @@ public interface SensorDao {
 
     public Sensor update(Sensor sensor);
 
+    public List<Sensor> searchSensor(String query);
+
 }

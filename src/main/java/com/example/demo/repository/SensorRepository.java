@@ -15,7 +15,6 @@ public interface SensorRepository extends CrudRepository<Sensor, Integer> {
 
     Sensor findSensorById(int id);
 
-
     @Modifying
     @Query("update Sensor s SET s.models = :models WHERE s.id = :id")
     public void updateSensortUsingQueryAnnotation(@Param("models") String studentName, @Param("id") int id);
@@ -25,4 +24,14 @@ public interface SensorRepository extends CrudRepository<Sensor, Integer> {
 
     @Query("select count(s) from Sensor s")
     int numDeviceEventsWithAlarm ();
+
+    @Query("SELECT s FROM Sensor s WHERE " +
+            "s.names LIKE CONCAT('%',:query, '%')" +
+            "Or s.models LIKE CONCAT('%', :query, '%')"+
+            "Or s.types LIKE CONCAT('%', :query, '%')"+
+            "Or s.ranges LIKE CONCAT('%', :query, '%')"+
+            "Or s.location LIKE CONCAT('%', :query, '%')"+
+            "Or s.description LIKE CONCAT('%', :query, '%')"+
+            "Or s.units LIKE CONCAT('%', :query, '%')")
+    List<Sensor> searchSensor(String query);
 }

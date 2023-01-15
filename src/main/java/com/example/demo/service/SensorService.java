@@ -37,4 +37,9 @@ public class SensorService {
         return sensorList;
     }
 
+    public List<Sensor> searchSensor(String query){
+        List<Sensor> sensors = sensorDao.searchSensor(query);
+        return sensors;
+    }
+
 }
