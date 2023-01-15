@@ -23,6 +23,5 @@ ____
 ![Start page of Application](https://github.com/bembel1993/imgForDiplom/blob/main/s1.png)
 ![Start page of Application](https://github.com/bembel1993/imgForDiplom/blob/main/s2.png)
 ![Start page of Application](https://github.com/bembel1993/imgForDiplom/blob/main/s3.png)
-____
 ### Search Result
 ![Start page of Application](https://github.com/bembel1993/imgForDiplom/blob/main/s7.png)
