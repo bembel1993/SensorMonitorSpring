@@ -66,6 +66,7 @@ public class SimpleController {
     public ModelAndView getAllSensor() {
         ModelAndView mav = new ModelAndView("list-sensor");
         mav.addObject("sensors", sensorRepository.findAll());
+        mav.addObject ("sensorQty", sensorRepository.count());
         return mav;
     }
 
@@ -112,7 +113,13 @@ public class SimpleController {
         return "redirect:/listSensor";
     }
 
-    @GetMapping("/searchByName")
+    @PostMapping("/searchByName")
+    public String searchMethod(@RequestParam String search, Model model) {
+            model.addAttribute("sensors", sensorService.findSensorByName(search));
+
+        return "search-result";
+    }
+    /*@PostMapping("/searchByName")
     public String searchByName(@RequestParam("searchName") String searchName, Model model) {
         List<Sensor> sensorList = sensorService.searchByName(searchName);
         if (sensorList.isEmpty()) {
@@ -120,7 +127,7 @@ public class SimpleController {
         }
         model.addAttribute("sensors", sensorList);
         return "search-result";
-    }
+    }*/
 }
 
  /* @PostMapping("/saveSensor")

@@ -6,6 +6,7 @@ import com.example.demo.repository.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +23,11 @@ public class SensorService {
 
     public void update(Sensor sensor){
         sensorDao.update(sensor);
+    }
+
+    public List<Sensor> findSensorByName(String model){
+        List<Sensor> sensors = sensorRepository.findAllByName(model);
+        return sensors;
     }
 
     public List<Sensor> searchByName(String searchName) {

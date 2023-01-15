@@ -20,6 +20,9 @@ public interface SensorRepository extends CrudRepository<Sensor, Integer> {
     @Query("update Sensor s SET s.models = :models WHERE s.id = :id")
     public void updateSensortUsingQueryAnnotation(@Param("models") String studentName, @Param("id") int id);
 
-    @Query("SELECT COUNT(s) FROM Sensor s WHERE s.names=:names")
-    long aMethodNameOrSomething(@Param("names") String name);
+    @Query("SELECT s FROM Sensor s WHERE s.names LIKE %:models%")
+    List<Sensor> findAllByName(@Param("models") String names);
+
+    @Query("select count(s) from Sensor s")
+    int numDeviceEventsWithAlarm ();
 }
